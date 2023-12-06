@@ -1,0 +1,14 @@
+.button{
+    margin: 10px;
+    border-radius: 10px;
+}
+p{
+    font-size: large;
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+.count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
