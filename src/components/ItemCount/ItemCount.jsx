@@ -3,22 +3,22 @@ import './style.css';
 
 export const ItemCount = () => {
 
-    const [contador, setContador] = useState(0)
+    const [counter, setCounter] = useState(0)
 
     const aumentar = () =>{
-        setContador(contador + 1);
+        setCounter(counter + 1);
     }
 
     const disminuir = () =>{
-        if(contador > 0){
-            setContador(contador - 1)
+        if(counter > 0){
+            setCounter(counter - 1)
         }
     }
 
   return (
     <div className='count'>
         <button className='button' onClick={disminuir}>➖</button>
-        <p>{contador}</p>
+        <p>{counter}</p>
         <button className='button' onClick={aumentar}>➕</button>
     </div>
 

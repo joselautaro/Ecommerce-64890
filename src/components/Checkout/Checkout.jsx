@@ -26,7 +26,7 @@ export const Checkout = () =>{
             </div>
             <div className="form-group mt-3">
                 <button type="submit" className="btn btn-success">Finaliza compra</button>
-                <Link>Volver al carrito</Link>
+                <Link className="btn btn-info" to="/cart">Volver al carrito</Link>
             </div>
         </div>
     )

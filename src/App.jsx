@@ -9,6 +9,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import { ItemCount } from './components/ItemCount/ItemCount';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route exact path='/' element={<ItemListContainer/>}/>
           <Route exact path='/productos/:categoryId' element={<ItemListContainer/>}/>
           <Route exact path='/detail/:itemId' element={<ItemDetailContainer/>}/>
+          <Route exact path='/counter' element={<ItemCount/>}/>
           <Route exact path='/checkout' element={<Checkout/>}/>
           <Route exact path='/cart' element={<CartScreen/>}/>
         </Routes>

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { ItemCount } from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 import './style.css'
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import Swal from 'sweetalert2'
 
 
 export const ItemDetail = ({ id, name, description, price, photo, category }) => {
@@ -13,15 +16,22 @@ export const ItemDetail = ({ id, name, description, price, photo, category }) =>
         navigate("/")
     }
 
+    const {agregarAlCarrito} = useContext(CartContext)
+
+    const [counter, setCounter] = useState(2);
+
     const sumarAlCarrito = () => {
         const newItem = {
             id,
             name,
             description,
             photo,
+            price,
             category,
+            counter
         }
-        console.log(newItem)
+        agregarAlCarrito(newItem)
+        Swal.fire("Producto agregado satisfactoriamente!");
     }
 
     return (
@@ -33,7 +43,7 @@ export const ItemDetail = ({ id, name, description, price, photo, category }) =>
                 <p>um fugiat dolores sequi. </p>
                 <h5>Categoria: {category}</h5>
                 <h5>${price}</h5>
-                <ItemCount />
+                <ItemCount modify={setCounter} cantidad={counter}/>
                 <div className="botones">
                 <button onClick={sumarAlCarrito} className="btn btn-info">Agregar al Carrito</button>
                 <Link className="btn btn-success" to='/cart'>Ir al carrito</Link>
