@@ -8,7 +8,7 @@ import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert2'
 
 
-export const ItemDetail = ({ id, name, description, price, photo, category }) => {
+export const ItemDetail = ({ id, name, description, price, photo, category, stock }) => {
 
     const navigate = useNavigate()
 
@@ -18,7 +18,7 @@ export const ItemDetail = ({ id, name, description, price, photo, category }) =>
 
     const {agregarAlCarrito} = useContext(CartContext)
 
-    const [counter, setCounter] = useState(2);
+    const [counter, setCounter] = useState(0);
 
     const sumarAlCarrito = () => {
         const newItem = {
@@ -43,7 +43,7 @@ export const ItemDetail = ({ id, name, description, price, photo, category }) =>
                 <p>um fugiat dolores sequi. </p>
                 <h5>Categoria: {category}</h5>
                 <h5>${price}</h5>
-                <ItemCount modify={setCounter} cantidad={counter}/>
+                <ItemCount max={stock} cantidad={counter} modify={setCounter}/>
                 <div className="botones">
                 <button onClick={sumarAlCarrito} className="btn btn-info">Agregar al Carrito</button>
                 <Link className="btn btn-success" to='/cart'>Ir al carrito</Link>

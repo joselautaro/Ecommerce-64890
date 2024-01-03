@@ -1,17 +1,20 @@
-import {useState, createContext} from "react";
+import {useState, createContext, useEffect} from "react";
+import Swal from 'sweetalert2'
 
 export const CartContext = createContext()
 
 
 
-
+const init = JSON.parse(localStorage.getItem('carrito')) || [];
 export const CartProvider = ({children}) =>{
 
-    const [carrito, setCarrito] = useState([])
 
+    const [carrito, setCarrito] = useState(init)
+
+    useEffect(() =>{
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }, [carrito])    
     
-    
-    console.log(carrito)
     const agregarAlCarrito = (item) =>{
         setCarrito([...carrito, item])
     }
@@ -22,8 +25,6 @@ export const CartProvider = ({children}) =>{
 
     const precioTotal = () =>{
         return carrito.reduce((acc, prod) => {
-        console.log("Precio: ", prod.price)
-        console.log("Cantidad: ", prod.counter)
         if(prod.price !== undefined && prod.counter !== undefined && typeof prod.price === 'number' && typeof prod.counter === 'number'){
             return acc + prod.price * prod.counter;
         }
@@ -31,12 +32,22 @@ export const CartProvider = ({children}) =>{
         }, 0)
     }
     
+    const vaciarCarrito = () =>{
+        setCarrito([])
+    }
+    const removerItem = (itemId) =>{
+            const newCart = carrito.filter((prod) => prod.id !== itemId)
+            setCarrito(newCart)
+            Swal.fire("Producto eliminado satisfactoriamente!");
+        }
+    
     return(
         <CartContext.Provider value={{
-            // vaciarCarrito,
+            vaciarCarrito,
             agregarAlCarrito,
-            // removerItem,
+            removerItem,
             calcularCantidad,
+            carrito,
             precioTotal
         }}>
          {children}   
@@ -44,6 +55,7 @@ export const CartProvider = ({children}) =>{
     )
 
 }
+
 // const init = JSON.parse(localStorage.getItem('carrito')) || []
 // useEffect(() => {
 //     localStorage.setItem('carrito', JSON.stringify(carrito))
@@ -64,7 +76,4 @@ export const CartProvider = ({children}) =>{
             //     console.log("Item removido")
             // }
         
-            // const vaciarCarrito = () =>{
-            //     setCarrito([])
-            //     console.log("Carrito vacio")
-            // }
+            
