@@ -19,6 +19,7 @@ export const CartProvider = ({children}) =>{
         setCarrito([...carrito, item])
     }
 
+
     const calcularCantidad = () =>{
         return carrito.reduce((acc, prod) => acc + prod.counter, 0)
     }
@@ -38,7 +39,13 @@ export const CartProvider = ({children}) =>{
     const removerItem = (itemId) =>{
             const newCart = carrito.filter((prod) => prod.id !== itemId)
             setCarrito(newCart)
-            Swal.fire("Producto eliminado satisfactoriamente!");
+            Swal.fire({
+                position: "top-end",
+                icon: "warning",
+                title: "Producto eliminado",
+                showConfirmButton: false,
+                timer: 800
+              });
         }
     
     return(
@@ -55,25 +62,5 @@ export const CartProvider = ({children}) =>{
     )
 
 }
-
-// const init = JSON.parse(localStorage.getItem('carrito')) || []
-// useEffect(() => {
-//     localStorage.setItem('carrito', JSON.stringify(carrito))
-// }, [carrito])
-            // const precioTotal = () => {
-                //     return carrito.reduce((acc, prod) => {
-            //       if (prod.price !== undefined && prod.counter !== undefined) {
-            //         return acc + prod.price * prod.counter;
-            //       }
-            //       return acc;
-            //     }, 0);
-            //   };
-              
-        
-            // const removerItem = (itemId) =>{
-            //     const newCart = carrito.filter((prod) => prod.id !== itemId)
-            //     setCarrito(newCart)
-            //     console.log("Item removido")
-            // }
         
             

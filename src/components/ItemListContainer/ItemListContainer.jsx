@@ -3,6 +3,7 @@ import { pedirProductos } from '../../helpers/pedirProductos';
 import './style.css'
 import {useParams} from 'react-router-dom';
 import { ItemList } from "../ItemList/ItemList";
+import { ImSpinner3 } from "react-icons/im";
 
 export const ItemListContainer = () => {
 
@@ -22,10 +23,10 @@ export const ItemListContainer = () => {
                 }else{
                     setItems(res)
                 }
-                // console.log(res)
+               
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error);
             })
             .finally(() => {
                 setLoading(false)
@@ -39,7 +40,7 @@ export const ItemListContainer = () => {
         <>
             {
                 loading
-                    ? <div>Cargando...</div>
+                    ? <div className="spinner"><ImSpinner3 /></div> 
                     : <ItemList productos={items}/>
             }
         </>

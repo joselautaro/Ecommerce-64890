@@ -7,11 +7,11 @@ export const NavBar = () => {
     return (
 
         <nav>
-            <Link to="/">Home</Link>
-            <Link to="/productos/tecnologia">Tecnologia</Link>
-            <Link to="/productos/indumentaria">Indumentaria</Link>
-            <Link to="/productos/ropa">Ropa</Link>
-            <Link to="/cart"><CartWidget/></Link>
+            <Link className='link' to="/">Home</Link>
+            <Link className='link' to="/productos/tecnologia">Tecnología</Link>
+            <Link className='link' to="/productos/indumentaria">Indumentaria</Link>
+            <Link className='link' to="/productos/ropa">Ropa</Link>
+            <Link className='link' to="/cart"><CartWidget/></Link>
         </nav>
 
     );

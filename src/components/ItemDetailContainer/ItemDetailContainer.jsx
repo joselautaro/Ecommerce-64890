@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { pedirProductos } from '../../helpers/pedirProductos';
 import { ItemDetail } from '../ItemDetail/ItemDetail';
+import { ImSpinner3 } from "react-icons/im";
 import './style.css'
 
 export const ItemDetailContainer = () => {
@@ -23,7 +24,7 @@ export const ItemDetailContainer = () => {
 
     return (
         <section className='fila'>
-            {loading ? <h4>Cargando...</h4> : <ItemDetail {...item} />}
+            {loading ? <div className="spinner"><ImSpinner3 /></div>  : <ItemDetail {...item} />}
         </section>
     );
 };

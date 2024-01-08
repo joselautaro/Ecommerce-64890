@@ -31,7 +31,13 @@ export const ItemDetail = ({ id, name, description, price, photo, category, stoc
             counter
         }
         agregarAlCarrito(newItem)
-        Swal.fire("Producto agregado satisfactoriamente!");
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Producto agregado satisfactoriamente",
+            showConfirmButton: false,
+            timer: 1000
+          });
     }
 
     return (
