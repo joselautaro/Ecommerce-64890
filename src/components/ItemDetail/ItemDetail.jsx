@@ -32,7 +32,7 @@ export const ItemDetail = ({ id, name, description, price, photo, category, stoc
         }
         agregarAlCarrito(newItem)
         Swal.fire({
-            position: "top-center",
+            position: "top-end",
             icon: "success",
             title: "Producto agregado satisfactoriamente",
             showConfirmButton: false,
